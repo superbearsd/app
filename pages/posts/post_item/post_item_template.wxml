@@ -1,0 +1,17 @@
+<template name="post_item">
+  <view class="news_container">
+    <view class="new_top">
+      <image src='{{user_image}}'></image>
+      <text>{{post_date}}</text>
+    </view>
+    <text class="news_title">{{post_title}}</text>
+    <image src='{{post_image}}'></image>
+    <text class="news_body">{{post_body}}</text>
+    <view class="news_bootom">
+      <image src='/images/icon/chat.png'></image>
+      <text>{{collect_num}}</text>
+      <image src='/images/icon/view.png'></image>
+      <text>{{view_num}}</text>
+    </view>
+  </view>
+</template>

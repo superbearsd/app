@@ -1,0 +1,12 @@
+{
+  "pages": [
+    "pages/posts/post_detail/post_detail",
+    "pages/welcome/welcome",
+    "pages/posts/posts"
+    
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#b3d4db"
+  },
+  "sitemapLocation": "sitemap.json"
+}

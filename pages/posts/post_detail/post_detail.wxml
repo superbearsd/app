@@ -1,0 +1,25 @@
+<view class="detail-container">
+  <view class="head-img">
+  <view>
+  <image class="music-buton" src="/images/music/music-start.png"></image>
+  </view>
+    <image class="post-img" src="../../../images/post/crab.png"></image>
+  </view>
+  <view class="detail-infor">
+    <image class="author-img" src="../../../images/avatar/1.png"></image>
+    <text class="author-name">熊超   發表于</text>
+    <text class="post-time">24小時前</text>
+  </view>
+  <view class="post-title">
+    <text>又是蟹黃时</text>
+  </view>
+  <view class="post-operation">
+    <view class="oper-line"></view>
+    <image src="../../../images/icon/collection.png"></image>
+    <image src="../../../images/icon/share.png"></image>
+  </view>
+  <view class="post-content">
+    <text>中华绒螯蟹常穴居江、河、湖荡泥岸，昼匿夜出，以动物尸体或谷物为食。到每年秋季，长得比较丰满，常回游到近海繁殖，母体所带的卵在翌年3-5月间孵化，幼体经过多次变态，发育成为幼蟹，再溯江、河而上，在淡水中继续生长。每届秋季，当此蟹在繁殖回游期中，渔民常在河湖中筑簖，到晚上用灯光诱捕之。其肉质鲜美，含有丰富的蛋白质、较少的脂肪和碳水化合物及丰富的钙、磷、钾、钠、镁、硒等微量元素，蟹黄中的胆固醇含量较高，是餐桌上深受人们喜爱的一种滋味鲜美的水产佳肴，具有很高的食用价值、药用价值和经济价值。
+</text>
+  </view>
+</view>
