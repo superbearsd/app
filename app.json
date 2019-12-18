@@ -1,9 +1,8 @@
 {
   "pages": [
-    "pages/posts/post_detail/post_detail",
     "pages/welcome/welcome",
-    "pages/posts/posts"
-    
+    "pages/posts/posts",
+    "pages/posts/post_detail/post_detail"  
   ],
   "window": {
     "navigationBarBackgroundColor": "#b3d4db"
