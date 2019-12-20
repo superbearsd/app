@@ -19,7 +19,7 @@ Page({
     this.setData({ post_data: postsData.postList[this.data.postid]})
     var posts_collection = wx.getStorageSync("posts_collection");
     var collected = posts_collection[this.data.postid] ? posts_collection[this.data.postid]:false;
-    this.setData({ collected: collected });
+    this.setData({ postcollected: collected });
 
     
   },
@@ -80,29 +80,48 @@ Page({
         collected=!collected;
         posts_collection[this.data.postid]=collected;       
       }else{ //页面没缓存情况，肯定没有收藏
-        posts_collection[this.data.postid]=true;
-        collected=true;        
+        posts_collection[this.data.postid]=true;        
       }
-      wx.setStorage({
-        key: 'posts_collection',
-        data: posts_collection,
-      });
-      this.setData({ collected: collected });
 
     } else {//没有缓存情况，必定是没有收藏，
       posts_collection = {};
       posts_collection[this.data.postid] = true;
-      wx.setStorage({
-        key: 'posts_collection',
-        data: posts_collection,
-      });
-      this.setData({collected:true});
-
-    
-
     }
+    this.showModal(posts_collection);
+  },
+  showToast:function(postsCollection){
+    wx.setStorage({
+      key: 'posts_collection',
+      data: postsCollection,
+    });
+    this.setData({ postcollected: postsCollection[this.data.postid] });
     wx.showToast({
-      title: posts_collection[this.data.postid]? '收藏成功':"取消成功",
+      title: postsCollection[this.data.postid] ? '收藏成功' : "取消成功",
     })
+  },
+  showModal: function (postsCollection){
+    var that=this;
+    wx.showModal({
+      title: "收藏",
+      content: postsCollection[this.data.postid] ? "收藏该文章？" : "取消收藏该文章？",
+      showCancel: "true",
+      cancelText: "取消",
+      cancelColor: "#333",
+      confirmText: "确认",
+      confirmColor: "#405f80",
+      success:function(res){
+        if(res.confirm){
+          wx.setStorage({
+            key: 'posts_collection',
+            data: postsCollection,
+          });
+          that.setData({ postcollected: postsCollection[that.data.postid] });
+        }else{
+          postsCollection[that.data.postid] = !postsCollection[that.data.postid]
+        }
+
+      }
+    })
+
   }
 })
