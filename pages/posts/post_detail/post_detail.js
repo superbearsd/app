@@ -123,5 +123,37 @@ Page({
       }
     })
 
+  },
+  onShareTap:function(event){
+    var items=[
+      "分享到朋友圈",
+      "分享到微博",
+      "分享给好友"
+    ]
+    wx.showActionSheet({
+      itemList: items,
+      itemColor:"#405f80",
+      success:function(res){
+        wx.showModal({
+          title: '用户'+items[res.tapIndex],
+          content: '用户是否取消'+res.showCancel,
+        })
+      }
+    })
+  },
+  onMusicTap:function(event){
+    var isMusicPlaying=this.data.isMusicPlaying;
+    var postdata = this.data.post_data;
+    if (isMusicPlaying){
+      wx.stopBackgroundAudio();
+      this.setData({isMusicPlaying:false});
+    }else{
+      wx.playBackgroundAudio({
+        dataUrl: postdata.music.url,
+        title:postdata.music.title,
+        coverImgUrl:postdata.music.coverImgUrl
+      });
+      this.setData({isMusicPlaying:true})
+    }
   }
 })

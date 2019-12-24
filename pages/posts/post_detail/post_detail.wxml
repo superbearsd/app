@@ -1,7 +1,7 @@
 <view class="detail-container">
   <view class="head-img">
   <view>
-  <image class="music-buton" src="/images/music/music-start.png"></image>
+  <image class="music-buton" catchtap="onMusicTap" src="{{isMusicPlaying?'/images/music/music-stop.png':'/images/music/music-start.png'}}"></image>
   </view>
     <image class="post-img" src="{{post_data.imgSrc}}"></image>
   </view>
@@ -17,7 +17,7 @@
     <view class="oper-line"></view>
     <image wx:if="{{postcollected}}" catchtap="onPostCollection" src="../../../images/icon/collection.png"></image>
      <image wx:else catchtap="onPostCollection" src="../../../images/icon/collection-anti.png"></image>
-     <image  src="../../../images/icon/share.png"></image>
+     <image catchtap="onShareTap" src="../../../images/icon/share.png"></image>
   </view>
   <view class="post-content">
     <text>{{post_data.detail}}</text>
