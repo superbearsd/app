@@ -1,15 +1,13 @@
 <import src="post_item/post_item_template.wxml" />
 <view>
-  <swiper indicator-dots="true" autoplay="true" interval="5000">
-    <swiper-item>
-      <image src='/images/post/xiaolong.jpg'></image>
+  <swiper catchtap="onBannerClick"  indicator-dots="true" autoplay="true" interval="5000">
+  <block wx:for="{{banners_data}}" wx:for-item="banner" wx:for-index="index">
+  <swiper-item>
+      <image src="{{banner.headImgSrc}}" data-postid="{{banner.postId}}"></image>
     </swiper-item>
-    <swiper-item>
-      <image src='/images/post/sls.jpg'></image>
-    </swiper-item>
-    <swiper-item>
-      <image src='/images/post/bl.png'></image>
-    </swiper-item>
+
+  </block>
+    
   </swiper>
   <block wx:for="{{posts_data}}" wx:for-item="item" wx:for-index="index">
     <view bindtap="onPostClick" data-postid="{{item.postId}}">

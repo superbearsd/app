@@ -1,4 +1,5 @@
-var postsData = require("../../../data/posts_content.js")
+var postsData = require("../../../data/posts_content.js");
+var app=getApp();
 
 // pages/posts/post_detail/post_detail.js
 Page({
@@ -14,12 +15,43 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
     var post_id=options.id
     this.data.postid = post_id;
     this.setData({ post_data: postsData.postList[this.data.postid]})
     var posts_collection = wx.getStorageSync("posts_collection");
     var collected = posts_collection[this.data.postid] ? posts_collection[this.data.postid]:false;
     this.setData({ postcollected: collected });
+
+    //设置音乐播放按钮状态
+    var isMusicPlaying = app.gloablData.g_isMusicPlaying;
+    var currentMusicPostId = app.gloablData.g_currentMusicPostId;
+    if (isMusicPlaying && currentMusicPostId == this.data.postid){
+      this.setData({
+        isMusicPlaying: isMusicPlaying
+      })
+    }
+      
+
+    //设置监听
+    var that=this;
+    wx.onBackgroundAudioPlay(function(){
+      that.setData({
+        isMusicPlaying:true
+      });
+      app.gloablData.g_isMusicPlaying=true;
+      app.gloablData.g_currentMusicPostId = that.data.postid;
+    });
+
+    wx.onBackgroundAudioPause(function () {
+      that.setData({
+        isMusicPlaying: false
+      });
+      app.gloablData.g_isMusicPlaying = false;
+      app.gloablData.g_currentMusicPostId = null;
+    });
+
+
 
     
   },
@@ -72,6 +104,7 @@ Page({
   onShareAppMessage: function () {
 
   },
+  //收藏按钮响应
   onPostCollection:function(event){
     var posts_collection=wx.getStorageSync("posts_collection");
     if (posts_collection) {//有缓存情况
@@ -89,6 +122,7 @@ Page({
     }
     this.showModal(posts_collection);
   },
+  //是否收藏
   showToast:function(postsCollection){
     wx.setStorage({
       key: 'posts_collection',
@@ -99,6 +133,7 @@ Page({
       title: postsCollection[this.data.postid] ? '收藏成功' : "取消成功",
     })
   },
+   //是否收藏
   showModal: function (postsCollection){
     var that=this;
     wx.showModal({
@@ -124,6 +159,7 @@ Page({
     })
 
   },
+  //分享按钮响应
   onShareTap:function(event){
     var items=[
       "分享到朋友圈",
@@ -141,19 +177,24 @@ Page({
       }
     })
   },
+  //音乐按钮相应
   onMusicTap:function(event){
     var isMusicPlaying=this.data.isMusicPlaying;
     var postdata = this.data.post_data;
     if (isMusicPlaying){
-      wx.stopBackgroundAudio();
+      wx.pauseBackgroundAudio();
       this.setData({isMusicPlaying:false});
+      app.gloablData.g_isMusicPlaying = false;
+      app.gloablData.g_currentMusicPostId = null;
     }else{
       wx.playBackgroundAudio({
         dataUrl: postdata.music.url,
         title:postdata.music.title,
         coverImgUrl:postdata.music.coverImgUrl
       });
-      this.setData({isMusicPlaying:true})
+      this.setData({isMusicPlaying:true});
+      app.gloablData.g_isMusicPlaying = true;
+      app.gloablData.g_currentMusicPostId = this.data.postid;
     }
   }
 })

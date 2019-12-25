@@ -16,9 +16,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    //加载数据
     let posts_data = postsData.postList;
-    this.setData({ posts_data: posts_data});
-
+    let banner_data = postsData.bannerList;
+    this.setData({ posts_data: posts_data,banners_data:banner_data});
   },
 
   /**
@@ -69,10 +70,19 @@ Page({
   onShareAppMessage: function () {
 
   },
+
+  //新闻点击事件
   onPostClick:function(event){
     var post_id = event.currentTarget.dataset.postid;
     wx.navigateTo({
       url: 'post_detail/post_detail?id='+post_id
+    })
+  },
+  //banner点击事件
+  onBannerClick:function(event){
+    var post_id = event.target.dataset.postid;
+    wx.navigateTo({
+      url: 'post_detail/post_detail?id=' + post_id
     })
   }
 })
