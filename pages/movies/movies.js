@@ -60,6 +60,7 @@ Page({
         "id":id,
         "image":image,
         "average":average,
+        "title":title,
         "stars":stars
       })
     }
@@ -113,6 +114,14 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
+
+  },
+  // 更多点击事件
+  onMoreClick:function(event){
+    var catelog = event.currentTarget.dataset.category;
+    wx.navigateTo({
+      url: "movie-more/movie-more?catelog="+catelog,
+    })
 
   }
 })
