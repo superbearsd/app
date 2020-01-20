@@ -2,7 +2,6 @@
 .movie-container{
   display: flex;
   flex-direction: column;
-  padding: 0 22rpx;
 }
 .movie-img{
   height: 270rpx;

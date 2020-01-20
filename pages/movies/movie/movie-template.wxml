@@ -1,6 +1,6 @@
 <import src="../stars/stars-template.wxml" />
 <template name="movieTemplate">
-  <view class="movie-container">
+  <view class="movie-container" data-id="{{id}}" catchtap="onDetailTap">
     <!-- <image class="movie-img" src="/images/wx.png"></image> -->
     <image class="movie-img" src="{{image}}"></image>
     <text class="movie-title">{{title}}</text>

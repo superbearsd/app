@@ -50,6 +50,13 @@ Page({
       app.gloablData.g_isMusicPlaying = false;
       app.gloablData.g_currentMusicPostId = null;
     });
+    wx.onBackgroundAudioStop(function () {
+      that.setData({
+        isMusicPlaying: false
+      });
+      app.gloablData.g_isMusicPlaying = false;
+      app.gloablData.g_currentMusicPostId = null;
+    });
 
 
 

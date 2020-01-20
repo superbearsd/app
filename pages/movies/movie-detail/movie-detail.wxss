@@ -1,0 +1,82 @@
+/* pages/movies/movie-detail/movie-detail.wxss */
+@import "../stars/stars-template.wxss";
+.headimg{
+  width: 100%;
+  height: 320rpx;
+  -webkit-filter: blur(15rpx);
+}
+.headinfor{
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+}
+.localinfor text{
+  font-size: 24rpx;
+  color: white;
+}
+.main-title{
+  margin-top: 30rpx;
+  margin-left: 40rpx;
+  font-size: 35rpx;
+  color: white;
+}
+.localinfor{
+  margin-left: 40rpx;
+  margin-top: 20rpx;
+}
+.commentinfor{
+  margin-top: 120rpx;
+  margin-left: 40rpx;
+  color: white;
+  font-size: 24rpx;
+}
+.commentinfor .detail{
+  color:#EE3B3B;
+}
+.mainImg{
+  position: absolute;
+  top:160rpx;
+  right: 30rpx;
+}
+.mainImg image{
+  width: 160rpx;
+  height: 240rpx;
+}
+.summary{
+  margin-left: 40rpx;
+  margin-top: 40rpx;
+  display: flex;
+  flex-direction: column;
+}
+.summary-title{
+ font-size: 35rpx;
+ color:#777777;
+ margin-bottom: 35rpx;
+}
+.flow-row{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15rpx;
+  /* justify-content: space-between; */
+  white-space:nowrap;
+}
+.flow-row text{
+  font-size: 24rpx;
+  /* color: #777777; */
+}
+.middle-line{
+ width: 100%;
+ height: 2rpx;
+ background-color: #d9d9d9;
+ margin-bottom: 15rpx;
+}
+.introduction{
+  display: flex;
+  flex-direction: column;
+  font-size: 24rpx;
+}
+.introduction-detail{
+  margin-top: 15rpx;
+  margin-bottom: 15rpx;
+}

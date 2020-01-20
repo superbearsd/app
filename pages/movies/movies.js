@@ -10,7 +10,10 @@ Page({
   data: {
     comingSoon:{},
     inTheaters:{},
-    top250:{}
+    top250:{},
+    searchResults:{},
+    searchPanelShow:false,
+    containerShow:true
   },
 
   /**
@@ -121,6 +124,40 @@ Page({
     var catelog = event.currentTarget.dataset.category;
     wx.navigateTo({
       url: "movie-more/movie-more?catelog="+catelog,
+    })
+
+  },
+  //点击详情事件
+  onDetailTap:function(event){
+    var id = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: "movie-detail/movie-detail?id=" + id,
+    })
+  },
+  //搜索框完成事件
+  inputConfirm:function(event){
+    // var searchUrl = app.gloablData.douban_baseurl + "/v2/movie/search" + "?apikey=" + app.gloablData.appkey + "&q=";
+    var searchUrl = app.gloablData.douban_baseurl + "/v2/movie/in_theaters" + "?apikey=" + app.gloablData.appkey + "&start=0&count=20";
+    var text=event.detail.value;
+    console.log(searchUrl+text);
+    this.getMovieData(searchUrl + text,"searchResults","");
+    this.setData({
+      searchPanelShow: true,
+      containerShow: false
+    })
+  },
+  //进行搜索事件
+  inputFocus:function(event){
+    this.setData({
+      searchPanelShow: true,
+      containerShow: false
+    })
+  },
+  //取消搜索事件
+  cancelClick:function(event){
+    this.setData({
+      searchPanelShow: false,
+      containerShow: true
     })
 
   }
